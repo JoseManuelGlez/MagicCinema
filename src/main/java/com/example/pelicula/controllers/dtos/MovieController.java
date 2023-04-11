@@ -32,6 +32,11 @@ public class MovieController {
         service.delete(id);
     }
 
+    @GetMapping
+    public List<CreateMovieResponse> list() {
+        return service.list();
+    }
+
     @RabbitListener(queues="queue.movie")
     public void list(String payload) throws JsonProcessingException {
         CreateMovieRequest request = MapperUtil.deserialize(payload, CreateMovieRequest.class);
